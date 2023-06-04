@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link href="/css/sign.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+
+<main class="form-sign w-100 m-auto">
+    <form th:action="@{/signup}" method="post">
+        <h1 class="h3 mb-3 fw-normal">Sign up</h1>
+        <div class="form-floating form-sign-top">
+            <input type="text" id="username" name="username" placeholder="username" required
+                   class="form-control">
+            <label for="username">Username</label>
+        </div>
+        <div class="form-floating form-sign-mdl">
+            <input type="password" id="password" name="password" placeholder="password" required
+                   class="form-control">
+            <label for="password">Password</label>
+        </div>
+        <div class="form-floating form-sign-btm">
+            <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm password" required
+                   class="form-control">
+            <label for="passwordConfirm">Confirm password</label>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 py-2">Sign up</button>
+        <div class="text-center my-2">
+            <p class="small fw-bold">
+                I have an account!
+                <a href="/login" class="link-body-emphasis py-2">Sign in</a>
+            </p>
+        </div>
+        <div th:if="${warningUserExist} or ${warningUsername} or ${warningPasswordLength} or ${warningPasswordConfirm}"
+             class="form-floating alert alert-danger" role="alert">
+            <h5 th:if="${warningUserExist}" th:text="${warningUserExist}"></h5>
+            <h5 th:if="${warningUsername}" th:text="${warningUsername}"></h5>
+            <h5 th:if="${warningPasswordLength}" th:text="${warningPasswordLength}"></h5>
+            <h5 th:if="${warningPasswordConfirm}" th:text="${warningPasswordConfirm}"></h5>
+        </div>
+    </form>
+</main>
+
+<footer th:insert="~{blocks/footer :: footer}"></footer>
+</body>
+</html>
